@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2018/04/04 v0.01 Journal of Data Science class]
+\ProvidesClass{jdsart}[2020/12/16 v0.02 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -1731,7 +1731,7 @@
 
 \newdimen\tablewidth
 \tablewidth=\textwidth
-\belowcaptionskip=2pt
+\belowcaptionskip=4pt
 
 %%%%%%%%%%%%%%% CONTTABLE
 \newtoks\table@head
