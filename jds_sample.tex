@@ -1,0 +1,482 @@
+\documentclass{jdsart}
+
+\volume{0}
+\issue{0}
+\pubmonth{July}
+\pubyear{2020}
+\articletype{research-article}
+\doi{0000}
+\firstpage{1}
+\lastpage{11}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{defin}{Definition}
+\hyphenation{de-si-de-rium}
+
+
+\begin{document}
+\begin{frontmatter}
+
+\title{A sample document long title}
+\runtitle{A sample document}
+
+\author[1]{\inits{F.}\fnms{Firstname1} \snm{Surname1}\thanksref{c1}\ead{aut@foo.com}\ead{aut@foo2.com}}
+\author[2]{\inits{S.}\fnms{Firstname2} \snm{Surname2}\thanksref{f1}}
+\thankstext[type=corresp,id=c1]{Corresponding author.}
+\thankstext[id=f1]{Simple footnote.}
+\address[1]{Address of the First author, \institution{University}, \cny{Country name}}
+\address[2]{Address of the Second author, \institution{University}, \cny{Country name}}
+
+\begin{abstract}
+Omnes hanc ergo sequamur qua cum gratia mereamur vitam aeternam.
+Consequamur. Praestet nobis deus, pater hoc et filius et mater
+praestet nobis.  Pater hoc et filius et mater cuius nomen invocamus
+dulce miseris solamen. Dum esset rex in accubitu suo, nardus mea
+dedit odorem suavitatis. Quoniam con-fortavit seras portarum tuarum,
+benedixit filiis tuis in te.
+\end{abstract}
+
+\begin{keywords}
+\kwd{Sample}
+\kwd{\LaTeX}
+\end{keywords}
+
+\end{frontmatter}
+
+\section{Introduction}
+
+This is a template for both the review version and the
+production
+version of JDS articles. They corresponds to two options of
+document
+class \texttt{jds}: \texttt{review} and \texttt{inpress}.
+
+\section{Short head one}
+
+Isi aedificaverit domum \citep{carlin1992monte,Kotz2001}, in vanum
+\cite*{Pozd:etal:2017} laboraverunt qui aedificant eam.
+Nisi custo-dierit civitatem, frustra vigilat qui custodit eam. Vanum
+est vobis ante lucem surgere: surgite postquam sederitis, qui
+manducatis panem doloris. Cum dederit dilectis suis somnum: ecce
+haereditas filii: merces, fructus ventris. Sicut sagit-tae in many
+potentis: ita filii excussorum. Beatus vir qui implevit desiderium
+suum ex pisis: non confundetus cum loquetur inimicis suis in porta.
+Ideo dilexit me rex et introduxit me in cubiculum suum et dixit
+mihi.
+Surge, amica mea, et veni.
+Ideo dilexit me rex et introduxit me in cubiculum suum et dixit
+mihi.
+Ideo dilexit me rex et introduxit me in cubiculum suum et dixit
+mihi.
+Ideo dilexit me rex et introduxit me in cubiculum suum et dixit
+mihi \cite{Pozd:etal:2017}.
+
+
+\subsection{Short head two}
+
+Dic nam esta pulchra ut luna electa, ut sol replet laetitia terras,
+caelos. Maria virgo illa dulcis, praedicata de propheta porta
+orientalis. Nigra sum, sed for-mosa, filiae. Ideo dilexit me rex et \cite{Pozd:etal:2017}
+introduxit me in cubiculum suum et dixit mihi. Surge, amica mea, et
+veni. Iam hiems transiit, imber abiit et recessit, flores apparuerunt in
+terra nostra. Audi caelum, verba mea, plena desiderio et perfusa gaudio \cite{gamado2017estimation,gamado2014modelling}.
+
+\subsection{A little longer head two, with punctuation, of course}
+
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat
+ut benefi-cam.  Dic nam esta pulchra ut luna electa, ut sol replet
+laetitia terras, caelos.  Maria virgo illa dulcis, praedicata de
+propheta porta orientalis. Tempus puta-tionis advenit. Illa sacra et
+felix porta, per quam mors fuit expulsa, introduxit autem vitam. Quae
+semper tutum est medium inter homines et deum, pro culpis remedium.
+%
+\begin{align}
+\gamma^\mu & =
+\left(
+%
+\begin{array}{cc}
+0            & \sigma^\mu_+ \\
+\sigma^\mu_- & 0            
+\end{array}
+%
+\right),
+\qquad
+\gamma^5= \left(
+%
+\begin{array}{cc}
+-1 & 0 \\
+0  & 1
+\end{array}
+%
+\right),\nonumber\\
+\sigma^\mu_{\pm} & = ({\bf1} ,\pm\sigma) , \nonumber
+\end{align}
+%
+giving
+%
+\begin{equation}
+\hat a= \left(
+%
+\begin{array}{cc}
+0          & (\hat a)_+ \\
+(\hat a)_- & 0
+\end{array}
+%
+\right),\quad(\hat a)_\pm=a_\mu\sigma^\mu_\pm,
+\end{equation}
+%
+Two equations:
+%
+\begin{equation}
+C_{s} = K_{M} \frac{\mu/\mu_{x}}{1-\mu/\mu_{x}} \label{ccs}
+\end{equation}
+%
+and
+%
+\begin{equation}
+G = \frac{P_{\rm opt} - P_{\rm ref}}{P_{\rm ref}}\ 100\ (\%).
+\end{equation}
+
+Long equation:
+%
+\begin{align}
+\sum_{u\in C^+}\left\lfloor{\frac{w'(u)}{m}} \right\rfloor 
+    & \le \left\lfloor\sum_{u\in C^+} {\frac{w'(u)}{m}} \right\rfloor \nonumber \\
+    & \le \left\lfloor{\frac{r(v)+\sum_{u\in C^+} w(u)}{m}} \right \rfloor = \left\lfloor{\frac{w(v)-\sum_{u\in C^-} w(u)}{m}} \right \rfloor \nonumber \\
+    & \le \left\lfloor{\frac{w(v)}{m}} \right\rfloor -\sum_{u\in C^-}\left\lfloor{\frac{w(u)}{m}} \right\rfloor = s(v)+\sum_{u\in C^+}\left\lfloor{\frac{w(u)}{m}} \right\rfloor
+\end{align}
+%
+and
+%
+\begin{align}
+\sum_{u\in C^-}\left\lfloor{\frac{w(u)}{m}} \right\rfloor
+    & \le \left\lfloor\sum_{u\in C^-} {\frac{w(u)}{m}} \right\rfloor \nonumber \\
+    & \le \left\lfloor{\frac{r'(v)+\sum_{u\in C^-} w'(u)}{m}} \right \rfloor = \left\lfloor{\frac{w'(v)-\sum_{u\in C^+} w'(u)}{m}} \right\rfloor \nonumber\\
+    & \le \left\lfloor{\frac{w'(v)}{m}} \right\rfloor -\sum_{u\in C^+}\left\lfloor{\frac{w'(u)}{m}} \right\rfloor = s'(v)+\sum _{u\in C^-}\left\lfloor{\frac{w'(u)}{m}} \right\rfloor .
+\end{align}
+%
+This time we have
+%
+\begin{align}
+f(S)-f(T) = {} & D_k^T\bigl(1+C_{\geq k+1}^T\bigr)(1 + C) + C_k^T\bigl(1+D_{\geq k+1}^T\bigr)(1 + D) \nonumber    \\
+            {} & - C_k^T\bigl(1+C_{\geq k+1}^T\bigr)(1 + C) - D_k^T\bigl (1+D_{\geq k+1}^T\bigr)(1 + D) \nonumber \\
+          = {} & \bigl(D_k^T-C_k^T\bigr)\bigl[(1+C_{\geq k+1})(1+C)-\bigl (1+D_{\geq k+1}^T\bigr)(1+D)\bigr]>0.
+\end{align}
+
+Omnes hanc ergo sequamur qua cum gratia mereamur vitam aeternam.
+Consequamur. Praestet nobis deus, pater hoc et filius et mater
+praestet nobis.  Pater hoc et filius et mater cuius nomen invocamus
+dulce miseris solamen. Dum esset rex in accubitu suo, nardus mea
+dedit odorem suavitatis. Quoniam con-fortavit seras portarum tuarum,
+benedixit filiis tuis in te Table~\ref{tbl-2}.
+
+
+
+\section{A longer head one limited only by the author's imagination}
+
+Nisi custodierit civitatem, frustra vigilat qui custodit eam. Vanum
+est vobis ante lucem surgere: surgite postquam sederitis, qui
+manducatis panem doloris. Cum dederit dilectis suis somnum: ecce
+haereditas filii: merces, fructus ventris. Sicut sagittae in many
+potentis: ita filii excussorum. Beatus vir qui implevit desiderium
+suum ex pisis: non confundetus cum loquetur inimicis suis in porta.
+Sicut erat in principio et nunc et semper, et in saecula saeculorum.
+Maria virgo illa dulcis, praedicata de propheta porta orientalis.
+Tempus putationis advenit.  Illa sacra et felix porta, per quam mors
+fuit expulsa, introduxit autem vitam.  Quae semper tutum est medium
+inter homines et deum, pro culpis remedium.
+
+
+\begin{table}
+\caption{Table caption.}\label{tbl-2}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}crrrrrrrr@{}}
+\hline
+Star & Height & \multicolumn{1}{c}{$d_{x}$} &
+\multicolumn{1}{c}{$d_{y}$} &
+\multicolumn{1}{c}{$n$} &
+\multicolumn{1}{c}{$\chi^2$} &
+\multicolumn{1}{c}{$R_{max}$} &
+\multicolumn{1}{c}{$R_{min}$} &
+\multicolumn{1}{c}{$P$}  \\
+\hline
+1 &33472.5 &-0.1 &0.4  &53 &27.4  &2.065  &1.940 &3.900\\
+2 &27802.4 &-0.3 &-0.2 &60 &3.7   &1.628  &1.510 &2.156\\
+3 &29210.6 &0.9  &0.3  &60 &3.4   &1.622  &1.551 &2.159\\
+4 &32733.8 &-1.2 &-0.5 &41 &54.8  &2.282  &2.156 &4.313\\
+5 & 9607.4 &-0.4 &-0.4 &60 &1.4   &1.669  &1.574 &2.343\\
+6 &31638.6 &1.6  &0.1  &39 &315.2 & 3.433 &3.075 &7.488\\
+\hline
+\end{tabular*}
+\end{table}
+
+
+\subsection{Average head two}
+
+\subsubsection{Followed by a three-head}
+
+A Short Head Three leads into paragraph, ui posuit fines tuos pacem,
+et adipe frumenti satiat te.\footnote{Qui emittit eloquium suum terrae;
+velociter currit sermo eius.} Qui dat nivem sicut lanam, nebulam
+sicut cinerem spargit. Mittit crystallum suam sicut buccellas; ante
+faciem frigoris eius quis sustinebit. Emittet verbum suum, et
+liquefaciet ea; flabit spiritus eius, et fluent aquae. Qui annuntiat
+verbum suum Jacob, justitias et iudicia sua Israel. Non fecit taliter omni
+nationi, et iudicia sua non manifestavit eis. Et exultavit spiritus meus
+in salutari meo.  Quia respexit humilitatem ancillae suae, ecce enim ex
+hoc beatem me dicent omnes generationes. Quia fecit mihi magna qui potens
+est; et sanctum nomen eius. Et misericordia eius a progenie in progenies
+timentibus eum. Fecit poten-tiam in brachio suo, dispersit superbos mente
+cordis sui.
+
+\paragraph{A short head four}
+Ui posuit fines tuos pacem,
+et adipe frumenti satiat te. Qui emittit eloquium suum terrae;
+velociter currit sermo eius.  Qui dat nivem sicut lanam, nebulam
+sicut cinerem spargit. Mittit crystallum suam sicut buccellas; ante
+faciem frigoris eius quis sustinebit. Emittet verbum suum, et
+liquefaciet ea; flabit spiritus eius, et fluent aquae (see Fig. \ref{f1}).
+
+\subparagraph{A short head five leads into paragraph} Ui posuit fines tuos pacem,
+et adipe frumenti satiat te. Qui emittit eloquium suum terrae;
+velociter currit sermo eius.  Qui dat nivem sicut lanam, nebulam
+sicut cinerem spargit. Mittit crystallum suam sicut buccellas; ante
+faciem frigoris eius quis sustinebit. Emittet verbum suum, et
+liquefaciet ea; flabit spiritus eius, et fluent aquae.
+
+
+\begin{figure}[t]
+\includegraphics[scale=.4]{uslogo}%uslogo(.eps,.pdf)
+\caption{Nisi custodierit civitatem, frustra vigilat qui custodit eam. Vanum
+est vobis ante lucem surgere: surgite postquam sederitis, qui
+manducatis panem doloris.}\label{f1}
+\end{figure}
+
+
+\section{Environments}
+
+\subsection{Enumerate}
+
+Nationi, et iudicia sua non manifestavit eis. Et exultavit spiritus meus
+in salutari meo.  Quia respexit humilitatem ancillae suae, ecce enim ex
+hoc beatem me dicent omnes generationes. Quia fecit mihi magna qui potens
+est; et sanctum nomen eius. Et misericordia eius a progenie in progenies
+timentibus eum. Fecit poten-tiam in brachio suo, dispersit superbos mente
+cordis sui.
+
+
+\begin{enumerate}
+\item Numbered list. Vanum est vobis ante lucem surgere: surgite
+postquam sederitis, qui manducatis panem doloris.
+
+\item Numbered list cum dederit dilectis suis somnum.
+
+\begin{enumerate}
+\item Numbered list. Vanum est vobis ante lucem surgere: surgite
+postquam sederitis, qui manducatis panem doloris.
+
+\item Numbered list cum dederit dilectis suis somnum.
+
+\item Numbered list cce haereditas filii: merces, fructus ventris.
+\end{enumerate}
+
+\item Numbered list cce haereditas filii: merces, fructus ventris.
+\end{enumerate}
+
+
+\begin{figure}[t]
+\includegraphics{dice}% dice(.eps,.pdf)
+\caption{Nisi custodierit civitatem.}\label{f2}
+\end{figure}
+
+Figure \ref{f2} sicut sagittae in many potentis: ita filii excussorum. Beatus vir qui
+implevit desiderium suum ex pisis: non confundetus cum loquetur inimicis
+suis in porta.  Sicut erat in principio et nunc et semper, et in saecula
+saeculorum. Audi caelum, verba mea, plena desiderio et perfusa gaudio.
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat ut
+beneficam.
+
+
+\subsection{Itemize}
+
+Beatus vir qui implevit desiderium
+suum ex pisis: non confundetus cum loquetur inimicis suis in porta.
+Sicut erat in principio et nunc et semper, et in saecula non
+confundetus cumsaeculorum. Dic, quaeso, mihi: quae est ista, quae
+consurgens ut aurora rutilat ut beneficam.
+
+\begin{itemize}
+\item An example of a bulleted list (itemize). Et exultavit spiritus meus in salutari meo.
+Quia respexit humilitatem ancillae.
+
+\item Second item in a bulleted list. Emittet verbum suum, et liquefaciet
+ea; flabit spiritus eius, et fluent aquae.
+
+\item Third and final item in a bulleted list. Sagittae in many potentis:
+ita filii excussorum.  Beatus vir qui implevit desiderium suum ex
+pisis: non confundetus cum loquetur inimicis suis in porta.
+\end{itemize}
+
+Beatus vir qui implevit desiderium
+suum ex pisis: non confundetus cum loquetur inimicis suis in porta.
+Sicut erat in principio et nunc et semper, et in saecula non
+confundetus cumsaeculorum. Dic, quaeso, mihi: quae est ista, quae
+consurgens ut aurora rutilat ut beneficam (Table~\ref{t1}).
+
+
+\begin{table}[t]
+\caption{One-column table.}\label{t1}
+\begin{tabular}{@{}ll}
+\hline
+Wavelength range       & 0.35--1.7~\textmu m  \\
+Telescope aperture     & 2~m                  \\
+Effective focal length & 21.66~m              \\
+Field of view          & 1.5~deg              \\
+                       & 0.7 square degree    \\
+Detectors:             & CCD                  \\
+                       & (10~\textmu m pixel) \\
+                       & NIR HgCdTe arrays,   \\
+                       & (18~\textmu m pixel) \\
+Survey field size      & 15 square deg        \\
+FVR                    & 4 days               \\
+FOT survey             & 60\%                 \\
+FOT spectroscopy       & 40\%                 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Quote, description, etc.}
+
+Sicut sagittae in many potentis: ita filii excussorum. Beatus vir qui
+implevit desiderium suum ex pisis: non confundetus cum loquetur inimicis
+suis in porta.  Sicut erat in principio et nunc et semper, et in saecula
+saeculorum. Audi caelum, verba mea, plena desiderio et perfusa gaudio.
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat ut
+beneficam.
+
+\begin{quotation}
+Extract sample (quotation). Vanum est vobis ante lucem surgere: surgite postquam
+sederitis, qui manducatis panem doloris. Praestet nobis deus, pater
+hoc et filius et mater praestet nobis.
+
+Nisi custodierit civitatem,
+frustra vigilat qui custodit eam. Cum dederit dilectis suis somnum:
+ecce haereditas filii: merces, fructus ventris. Sicut sagittae in
+many potentis: Ita filii excussorum.
+\end{quotation}
+
+Sicut sagittae in many potentis: ita filii excussorum. Beatus vir qui
+implevit desi\-derium suum ex pisis: non confundetus cum loquetur inimicis
+suis in porta.  Sicut erat in principio et nunc et semper, et in saecula
+saeculorum. Audi caelum, verba mea, plena desiderio et perfusa gaudio.
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat ut
+beneficam.
+
+\begin{quote}
+Extract sample (quote). Vanum est vobis ante lucem surgere: surgite postquam
+sederitis, qui manducatis panem doloris. Praestet nobis deus, pater
+hoc et filius et mater praestet nobis.
+
+Nisi custodierit civitatem,
+frustra vigilat qui custodit eam. Cum dederit dilectis suis somnum:
+ecce haereditas filii: merces, fructus ventris. Sicut sagittae in
+many potentis: Ita filii excussorum.
+\end{quote}
+
+Sicut sagittae in many potentis: ita filii excussorum. Beatus vir qui
+implevit desiderium suum ex pisis: non confundetus cum loquetur inimicis
+suis in porta.  Sicut erat in principio et nunc et semper, et in saecula
+saeculorum. Audi caelum, verba mea, plena desiderio et perfusa gaudio.
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat ut
+beneficam.
+
+\begin{description}
+\item[Description label.] Vanum est vobis ante lucem surgere: surgite postquam
+sederitis, qui manducatis panem doloris. Praestet nobis deus, pater
+hoc et filius et mater praestet nobis.
+
+\item[Description label.] Nisi custodierit civitatem,
+frustra vigilat qui custodit eam. Cum dederit dilectis suis somnum:
+ecce haereditas filii: merces, fructus ventris. Sicut sagittae in
+many potentis: Ita filii excussorum.
+\end{description}
+
+
+\section{Theorems}
+
+Beatus vir qui implevit desiderium
+suum ex pisis: non confundetus cum loquetur inimicis suis in porta.
+
+
+\begin{thm}[Quantitative theorem] Quae semper tutum est medium inter homines et deum, 
+pro culpis remedium.
+\end{thm}
+
+\begin{remark}[Quantitative theorem] Quae semper tutum est medium inter homines et deum, 
+pro culpis remedium.
+\end{remark}
+
+\begin{defin}[Quantitative theorem] Quae semper tutum est medium inter homines et deum, 
+pro culpis remedium.
+\end{defin}
+
+\begin{proof}
+The theorem is proved.
+\end{proof}
+
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat
+ut benefi-cam.  Dic nam esta pulchra ut luna electa, ut sol replet
+laetitia terras, caelos.
+
+\begin{thm}
+Nisi custodierit civitatem,
+frustra vigilat qui custodit eam. Cum dederit dilectis suis somnum:
+ecce haereditas filii: merces, fructus ventris. Sicut sagittae in
+many potentis: Ita filii excussorum.
+\end{thm}
+
+\begin{lemma}
+Maria virgo illa dulcis, praedicata de
+propheta porta orientalis. Tempus puta-tionis advenit. Illa sacra et
+felix porta, per quam mors fuit expulsa, introduxit autem vitam.
+\end{lemma}
+
+
+\begin{appendix}
+
+\section{Appendix section}
+
+Nisi custodierit civitatem,
+frustra vigilat qui custodit eam. Cum dederit dilectis suis somnum:
+ecce haereditas filii: merces, fructus ventris. Sicut sagittae in
+many potentis: Ita filii excussorum.
+
+\end{appendix}
+
+\begin{acknowledgement}[title={Acknowledgments}]
+Omnes hanc ergo sequamur qua cum gratia mereamur vitam aeternam.
+Consequamur. Praestet nobis deus, pater hoc et filius et mater
+praestet nobis.  Pater hoc et filius et mater cuius nomen invocamus
+dulce miseris solamen. Dum esset rex in accubitu suo, nardus mea
+dedit odorem suavitatis. Quoniam con-fortavit seras portarum tuarum,
+benedixit filiis tuis in te.
+\end{acknowledgement}
+
+\begin{funding}
+Dic, quaeso, mihi: quae est ista, quae consurgens ut aurora rutilat
+ut benefi-cam.  Dic nam esta pulchra ut luna electa, ut sol replet
+laetitia terras, caelos.
+\end{funding}
+
+\bibliographystyle{jds}
+\bibliography{biblio}
+
+\end{document}
+
