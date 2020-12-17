@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2020/12/16 v0.02 Journal of Data Science class]
+\ProvidesClass{jdsart}[2020/12/17 v0.03 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -819,8 +819,7 @@
 \frenchspacing
 
 %% >>> Metadata >>>
-\def\@publisher{Center for applied statistics, School of
-  statistics, Renmin University of China}
+\def\@publisher{School of Statistics, Renmin University of China}  
 \def\@publisheraddress{No. 59 Zhongguancun Street, Haidian
   District Beijing 100872, P.R. China}
 \def\@issn{1680-743X}
