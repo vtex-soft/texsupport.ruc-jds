@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2020/12/17 v0.03 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/07 v0.04 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -569,7 +569,8 @@
 \def\output@head@authors{}
 
 \def\runauthor@etal{~et al.}
-\def\head@author@defs{\front@author@defs
+\def\head@author@defs{%
+  \head@author@defs
   \def\fmt@snm##1{##1}%
   \def\fmt@fnms##1{##1}%
   }
@@ -738,17 +739,6 @@
   hypertexnames=false
   }
 
-\appto\maketitle{%
-  \hypersetup{%
-    pdfinfo={%
-      Title={\@title},
-      Subject={},
-      Author={\the\pdfmeta@authors},
-      Creator={VTeX},
-      Producer={VTeX},
-      }%
-    }%
-  }
 
 
 %% >>> startlocaldefs, endlocaldefs >>>
@@ -862,7 +852,7 @@
    
 \let\write@aux@au\@gobbletwo
 \protected\def\@write@aux@au#1#2{%
-  \protect\protected@write\@auxout{}{\string\global\string\@namedef{#1@\the\c@author @metadata}{#2}}%
+  \protect\protected@write\@auxout{}{\string\global\string\@namedef{metadata@\author@num @#1}{#2}}%
   }
 
 \def\front@author@eval@emails{%
@@ -874,10 +864,10 @@
   \let\degs\@gobble
   \let\suffix\@gobble
   \let\roles\@gobble
+  \let\~\empty
   }
   
 \def\front@author@defs{%
-  \def\ead##1##{\@gobble}%
   \let\bio\@gobble
   \let\write@aux@au\@write@aux@au
   \protected\def\degs##1{##1}%
@@ -887,11 +877,11 @@
     }%
   \protected\def\fnms##1{\fmt@fnms{##1}}%
   \protected\def\inits##1{%
-    \csdef{@inits}{##1}%
+    \def\@inits{##1}%
     \write@aux@au{inits}{##1}%
     }%
   \protected\def\snm##1{%
-    \csdef{@snm}{##1}%
+    \def\@snm{##1}%
     \write@aux@au{snm}{##1}%
     \fmt@snm{##1}%
     }%
@@ -899,6 +889,12 @@
   \protected\def\roles##1{##1}%
   }
 
+\def\head@author@defs{%
+  \front@author@defs
+  \let\write@aux@au\@gobletwo
+  \def\ead##1##{\@gobble}%
+  }
+  
 \def\author{%
   \@ifnextchar[%
     {\author@optarg}
@@ -906,6 +902,7 @@
   }
   
 \def\author@optarg[#1]#2{%
+  %% headings will use authors 
   \global\let\output@head@authors\@output@head@authors
   \stepcounter{author}%
   \beg@elem
@@ -914,8 +911,7 @@
   \let\_\textunderscore
   \init@fm@element{author}{#2}%
   \let\_\oldunderscore
-  \temptoks=\expandafter{\@author}%
-  \csxdef{author\the\c@author}{\expandonce{\the\temptoks}}%
+  \csxdef{author\the\c@author}{\expandonce{\@author}}%
   \protected\csxdef{author\the\c@author t@loc@notes}{\the\t@loc@notes}%
   \@ifundefined{author@list}
     {%
@@ -925,10 +921,11 @@
     }%
   \bgroup
     \front@author@eval@emails  
-    #2%  
+    \setbox\z@=\hbox{#2}%  
   \egroup
   \csname author@end@hook\endcsname
   }%
+
 \newtoks\pdfmeta@authors
 \def\addto@pdfmeta@authors#1{%
   \begingroup
@@ -936,6 +933,7 @@
     \@act
   \endgroup
   }
+  
 \def\do@pdfmeta@authors{%
   \@tempcnta\z@
   \@whilenum\@tempcnta<\c@author\do{%
@@ -944,10 +942,20 @@
       \addto@pdfmeta@authors{, }%
     \fi
     \addto@pdfmeta@authors{%
-      \@nameuse{inits@\the\@tempcnta @metadata}%
-      \@ifundefined{inits@\the\@tempcnta @metadata}
-        {}
-        { }\@nameuse{snm@\the\@tempcnta @metadata}%
+      \@ifundefined{metadata@\the\@tempcnta @inits}{}{%
+        \@nameuse{metadata@\the\@tempcnta @inits}%
+        \space 
+        }%
+      \@nameuse{metadata@\the\@tempcnta @snm}%
+      }%
+    }%
+  \hypersetup{%
+    pdfinfo={%
+      Title={\@title},
+      Subject={},
+      Author={\the\pdfmeta@authors},
+      Creator={VTeX},
+      Producer={VTeX},
       }%
     }%
   }
