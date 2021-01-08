@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/07 v0.04 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/08 v0.05 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -891,7 +891,7 @@
 
 \def\head@author@defs{%
   \front@author@defs
-  \let\write@aux@au\@gobletwo
+  \let\write@aux@au\@gobbletwo
   \def\ead##1##{\@gobble}%
   }
   
