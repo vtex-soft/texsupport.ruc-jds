@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/08 v0.05 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/12 v0.07 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -569,8 +569,11 @@
 \def\output@head@authors{}
 
 \def\runauthor@etal{~et al.}
+
 \def\head@author@defs{%
-  \head@author@defs
+  \front@author@defs
+  \let\write@aux@au\@gobbletwo
+  \def\ead##1##{\@gobble}%
   \def\fmt@snm##1{##1}%
   \def\fmt@fnms##1{##1}%
   }
@@ -887,12 +890,6 @@
     }%
   \protected\def\suffix##1{##1}%
   \protected\def\roles##1{##1}%
-  }
-
-\def\head@author@defs{%
-  \front@author@defs
-  \let\write@aux@au\@gobbletwo
-  \def\ead##1##{\@gobble}%
   }
   
 \def\author{%
