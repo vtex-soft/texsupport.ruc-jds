@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/12 v0.07 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/14 v0.10 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -574,30 +574,34 @@
   \front@author@defs
   \let\write@aux@au\@gobbletwo
   \def\ead##1##{\@gobble}%
-  \def\fmt@snm##1{##1}%
-  \def\fmt@fnms##1{##1}%
+  \def\@inits##1{}%  
+  \def\@snm##1{}%  
+  \def\@fnm##1{}%  
+  \let\~\empty
+  \def\inits##1{\def\@inits{, ##1}}%
+  \def\snm##1{\def\@snm{##1}}%
+  \def\fnms##1{\def\@fnms{##1}\ignorespaces}%
   }
 
 \def\head@author@fmt#1{%
+  \head@author@defs 
   \get@author@num #1\relax
   \set@author@sep
   \@author@sep
   \@nameuse{#1}%
+  \@snm \@inits
   }
-
+\def\head@authors@font{\itshape\selectfont}
+  
 \newbox\headbox
 \def\@output@head@authors{%
   \bgroup
-    \head@author@defs 
-    \itshape\selectfont
-    \setbox\@tempboxa=\hbox{%
-      \def\do##1{\head@author@fmt{##1}}%
-      \expandafter\docsvlist\expandafter{\author@list}%
-      }%
-    \ifdim\wd\@tempboxa>.9\textwidth\relax
+    \head@authors@font
+    \ifnum\c@author>2\relax
       \head@author@fmt{author1}\runauthor@etal
     \else
-      \unhbox\@tempboxa
+      \def\do##1{\head@author@fmt{##1}}%
+      \expandafter\docsvlist\expandafter{\author@list}%
     \fi
   \egroup
   }
@@ -618,7 +622,7 @@
   \renewcommand{\headrulewidth}{0pt}%
   \fancyhf{}%
   \fancyhead[L]{\normalfont\footnotesize\print@volume@line}
-  \fancyhead[R]{\footnotesize DOI:\ \@doi\\}
+  \fancyhead[R]{\footnotesize DOI: \@doi\\ \@pretitle}
   \fancyfoot[LE,RO]{\@pageprefix\thepage}% number of the first page
   \fancyfoot[RE,LO]{\footnotesize \history@fmt}
 }
@@ -636,7 +640,7 @@
       }
       \@smonth\ \@syear
     }
-    \fancyhead[R]{\footnotesize DOI:\ \@doi\\}
+    \fancyhead[R]{\footnotesize DOI:\ \@doi\\ \@pretitle}
     \fancyfoot[LE,RO]{\@pageprefix\thepage}% number of the page
   }
 \fi
@@ -650,7 +654,7 @@
       \@pageprefix\@discussionfirstpage--\@pageprefix\pageref*{LastPage}\\
       \@syear 年 \@smonth 月
     }
-    \fancyhead[R]{\footnotesize DOI:\ \@doi\\}
+    \fancyhead[R]{\footnotesize DOI:\ \@doi\\ \@pretitle}
     \fancyfoot[LE,RO]{\@pageprefix\thepage}% number of the first page
     \fancyfoot[RE,LO]{\footnotesize \history@fmt}
   }
@@ -835,8 +839,11 @@
 
 \ifdefined\HCode
 \else
-  \DeclareFontShape{T1}{lmr}{b}{sc}{<->ssub*cmr/bx/sc}{}
-  \DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{}
+  \def\lmr@font@fix{%
+    \DeclareFontShape{T1}{lmr}{b}{sc}{<->ssub*cmr/bx/sc}{}
+    \DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{}
+    }
+  \@nameuse{\rmdefault @font@fix}
 \fi
   
 %% >>> author setup >>>
@@ -1777,6 +1784,10 @@
 
 \let\tsub\textsubscript
 \let\tsup\textsuperscript
+
+\RequirePackage{marginnote}
+% \reversemarginpar
+\setlength{\marginparwidth}{2.4cm}
 
 \endinput
 %%
