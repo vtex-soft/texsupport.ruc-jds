@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/14 v0.10 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/18 v0.11 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -345,8 +345,8 @@
   }
 
 \newif\if@firstkwd
-\def\kwd@sep{\unskip; }%
-\def\kwd@lastsep{\unskip.}%
+\def\kwd@sep{\unskip; }
+\def\kwd@lastsep{\unskip}
 \def\kwd@font{\itshape}
 \def\msc@hrefprefix{http://www.ams.org/msc/msc2010.html?s=}
 \newcommand\kwd[2][]{%
@@ -1062,7 +1062,7 @@
     }{%
       \xappto\address@list{,address\the\c@address}%
     }%
-  \label{#1}%
+  \label{aff.#1}%
   \csname address@end@hook\endcsname
   \ignorespaces
   }
