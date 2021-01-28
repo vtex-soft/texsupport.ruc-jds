@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/18 v0.11 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/28 v0.13 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -1653,6 +1653,8 @@
   }
 
 %% >>> Funding >>>
+\def\funding@font{\normalfont \large \bfseries}
+
 \def\@afterbox{%
   \everypar{%
     \if@nobreak
@@ -1660,7 +1662,7 @@
       \clubpenalty \@M
       \if@afterindent \else
         {\setbox\z@\lastbox}%
-        \everypar{}%2015-04-09
+        \everypar{}%
       \fi
     \else
       \clubpenalty \@clubpenalty
@@ -1689,7 +1691,8 @@
         \clubpenalty\@M
         {%
           %\sffamily
-          \bfseries#1\\\\%
+          \funding@font
+          #1\\\\%
         }%
         %\unskip\hskip0.5em\relax
       \else
