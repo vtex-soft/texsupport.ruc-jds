@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/28 v0.13 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/01/29 v0.14 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -1653,7 +1653,7 @@
   }
 
 %% >>> Funding >>>
-\def\funding@font{\normalfont \large \bfseries}
+\def\funding@font{\normalfont \Large \bfseries}
 
 \def\@afterbox{%
   \everypar{%
