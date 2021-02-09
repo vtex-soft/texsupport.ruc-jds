@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/01/29 v0.14 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/02/09 v0.15 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -326,9 +326,8 @@
     \global\advance\keyboxcnt\@ne
     \global\expandafter\setbox\csname keybox#1\endcsname=\vbox\bgroup
       \hsize=\textwidth
-      \normalsize\normalfont
+      \normalfont\normalsize
       \def\baselinestretch{1}%
-      \small
       \parskip\z@
       % 10pt between abstract/keyword boxes and baselineskip + 2pt between keyword baselines
       \ifdefined\first@keyword@env
@@ -1671,7 +1670,7 @@
     \fi
     }%
   }
-
+  
 \newenvironment{Env@EndOfContrib}[1]
   {%
     \if@noskipsec\leavevmode\fi
