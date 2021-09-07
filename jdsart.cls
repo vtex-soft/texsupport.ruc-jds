@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/09/07 v0.17 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/09/07 v0.18 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -101,7 +101,7 @@
 
 \def\@journal{Journal of Data Science}
 \def\@journalabbrev{Journal of Data Science}
-\def\@journal@url{https://www.jds.org}
+\def\@journal@url{https://jds-online.org}
 \def\@JOURNAL{JOURNAL OF DATA SCIENCE}
 \def\@jid{jds}
 \def\@JID{JDS}
