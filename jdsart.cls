@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/02/09 v0.15 Journal of Data Science class]
+\ProvidesClass{jdsart}[2021/09/07 v0.17 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -101,7 +101,7 @@
 
 \def\@journal{Journal of Data Science}
 \def\@journalabbrev{Journal of Data Science}
-\def\@journal@url{http://www.jds.org}
+\def\@journal@url{https://www.jds.org}
 \def\@JOURNAL{JOURNAL OF DATA SCIENCE}
 \def\@jid{jds}
 \def\@JID{JDS}
@@ -129,7 +129,7 @@
 
 \def\logo@vtex{jds-logo-vtex}
 \def\includevtexlogo{\null}
-\def\@vtex@url{http://www.vtex.lt/en/}
+\def\@vtex@url{https://www.vtex.lt/en/}
 
 % COPYRIGHT
 % Define font psyr for copyright:
@@ -138,7 +138,7 @@
 \def\copyright@sign{{\copyrf\char'323}}
 
 \newif\if@open@access \global\@open@accesstrue
-\def\cclicense@link{http://creativecommons.org/licenses/by/4.0/}
+\def\cclicense@link{https://creativecommons.org/licenses/by/4.0/}
 \def\@openaccess{Open access article under the \href{\cclicense@link}{CC BY} license.}
 \def\copyright@statement{\lower5pc\hbox{\parbox{\textwidth}{\color[gray]{.7}\texttt{Preprint submitted to VTeX / \@journal\linebreak<\today>}}}}
 \def\copyright@line{\@copyright@fmt{\copyright@statement}}
@@ -347,7 +347,7 @@
 \def\kwd@sep{\unskip; }
 \def\kwd@lastsep{\unskip}
 \def\kwd@font{\itshape}
-\def\msc@hrefprefix{http://www.ams.org/msc/msc2010.html?s=}
+\def\msc@hrefprefix{https://www.ams.org/msc/msc2010.html?s=}
 \newcommand\kwd[2][]{%
   \bgroup
     \kwd@font
@@ -729,7 +729,7 @@
   
 \setlength{\bibsep}{0em}
 
-\def\MR@url{http://www.ams.org/mathscinet-getitem?mr=}
+\def\MR@url{https://www.ams.org/mathscinet-getitem?mr=}
 \def\MR#1{\href{\MR@url#1}{MR#1}}
 
 \RequirePackage{xcolor}
@@ -789,7 +789,7 @@
 \def\set@proof@mr{%
   \define@key{bid}{mr}{%
     \@nameuse{startchkuriskip}%
-    \safe@href{http://www.ams.org/mathscinet-getitem?mr=##1}{MR##1}%
+    \safe@href{https://www.ams.org/mathscinet-getitem?mr=##1}{MR##1}%
     \@nameuse{endchkuriskip}%
     \ignorespaces
     }%
@@ -1201,9 +1201,13 @@
 
 \newcounter{correspnote}
 \def\corresp@note@counter{correspnote}
+
 \newcounter{titlenote}
 \def\title@note@counter{titlenote}
 \def\subtitle@note@counter{titlenote}
+\def\relatedarticle@note@counter{titlenote}
+\def\correctionnote@note@counter{titlenote}
+
 \newcounter{authornote}
 \def\author@note@counter{authornote}
 \def\theauthornote{\fnsymbol{authornote}}
@@ -1220,9 +1224,11 @@
 \def\thetitlenote{%
   \ifcase\c@titlenote\relax
   \or
-    \ding{73}%
+    \protect\ding{73}%
   \or
-    \ding{73}\ding{73}%
+    \protect\ding{73}\protect\ding{73}%
+  \or
+    \protect\ding{73}\protect\ding{73}\protect\ding{73}%
   \fi
   }%
 \let\thesubtitlenote\thetitlenote
@@ -1266,7 +1272,7 @@
     \ifx\thanks@mark\@empty
       \def\thanks@mark{\thefootnote}%
     \fi
-      \freefootnotetext[\thanks@mark]{{\my@hy@tmp #2}}%
+    \freefootnotetext[\thanks@mark]{{\my@hy@tmp #2}}%
   \else
     \ifx\thanks@mark\@empty
       \def\thanks@mark{\thefootnote}%
@@ -1293,6 +1299,7 @@
   \fi
   \global\t@loc@notes\expandafter{\the\t@loc@notes#1}%
   }
+  
 \def\elem@nothanksref#1\thanksref{%
   \futurelet\@peektok\elem@thanksref
   }
@@ -1308,6 +1315,7 @@
   \add@thanks{id=#1}%
   \elem@nothanksref
   }
+  
 \def\elem@nothanks#1\thanks{%
   \futurelet\@peektok\elem@thanks
   }
@@ -1331,7 +1339,7 @@
   \add@thanks{}%
   \elem@nothanks
   }
-
+  
 \define@key{thankstext}{type}{\gdef\thankstext@type{#1}}
 \define@key{thankstext}{id}{\gdef\thankstext@id{#1}}
 \def\reset@thankstext{%
@@ -1343,7 +1351,6 @@
   \freefootnotetext[#1]{#2}%
   }
 \def\thankstext[#1]#2{%
-  %\add@tok\t@glob@notes{%
     \reset@thankstext
     \setkeys{thankstext}{#1}%
     \ifx\thankstext@type\@empty
@@ -1354,9 +1361,10 @@
     \setcounter{footnote}{\the\csname c@\current@counter\endcsname}%
     \def\thefootnote{\csname the\current@counter\endcsname}%
     \@@@Label{\thankstext@id}%
-    \thankstext@fmt{\thefootnote}{#2\csname \thankstext@type @posthook\endcsname}%
-    %}%
+    \thankstext@fmt{\thefootnote}{\csname \thankstext@type @prehook\endcsname #2\csname \thankstext@type @posthook\endcsname}%
   }
+
+  
 \define@key{addthanks}{id}{\def\addthanks@id{#1}}
 \define@key{addthanks}{mark}{\def\addthanks@mark{#1}}
 \define@key{addthanks}{type}{\def\addthanks@type{#1}}
@@ -1414,6 +1422,7 @@
 %% <<< init FM element setup <<<
 
 %% >>> title/subtitle setup >>>
+
 \def\title#1{%
   \beg@elem
   \gdef\@runtitle{#1}%
