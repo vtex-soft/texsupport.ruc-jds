@@ -153,7 +153,7 @@
     \noindent
     \raise4mm\hbox to \textwidth{%
       \footnotesize
-      \href{\@journal@url}{www.jds.org}%
+      \href{\@journal@url}{jds-online.org}%
       \hfill
       \href{\@vtex@url}{\includevtexlogo}%
       }%
