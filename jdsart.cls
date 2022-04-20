@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2021/09/07 v0.18 Journal of Data Science class]
+\ProvidesClass{jdsart}[2022/04/20 v0.20 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -101,7 +101,7 @@
 
 \def\@journal{Journal of Data Science}
 \def\@journalabbrev{Journal of Data Science}
-\def\@journal@url{https://jds-online.org}
+\def\@journal@url{https://www.jds.org}
 \def\@JOURNAL{JOURNAL OF DATA SCIENCE}
 \def\@jid{jds}
 \def\@JID{JDS}
@@ -140,9 +140,21 @@
 \newif\if@open@access \global\@open@accesstrue
 \def\cclicense@link{https://creativecommons.org/licenses/by/4.0/}
 \def\@openaccess{Open access article under the \href{\cclicense@link}{CC BY} license.}
-\def\copyright@statement{\lower5pc\hbox{\parbox{\textwidth}{\color[gray]{.7}\texttt{Preprint submitted to VTeX / \@journal\linebreak<\today>}}}}
+\def\copyright@statement{\textcopyright\ \@pubyear\ The Author(s). Published by the School of Statistics and 
+  the Center for Applied Statistics, Renmin University of China. \@openaccess}
 \def\copyright@line{\@copyright@fmt{\copyright@statement}}
-\def\@copyright@fmt#1{\vbox to0pt{\vskip-4.6pc\noindent\hbox{\footnotesize #1\hfill}\vss}}
+
+\newbox\copyright@box
+\def\@copyright@fmt#1{%
+  \setbox\copyright@box=\vbox to0pt{\vss \footnotesize #1\hfill}%
+  \wd\copyright@box=\z@
+  \ht\copyright@box=\z@
+  \dp\copyright@box=\z@
+  \footnotesize
+  \raise %11pt
+  \baselineskip
+  \box\copyright@box}
+
 \def\nocopyrightline{\gdef\copyright@line{\@copyright@fmt{}}}
 \def\credit@line{\@credit@fmt{\@credit}}
 \def\@credit@fmt#1{{\parindent0pt#1}}
@@ -153,7 +165,7 @@
     \noindent
     \raise4mm\hbox to \textwidth{%
       \footnotesize
-      \href{\@journal@url}{jds-online.org}%
+      \href{\@journal@url}{www.jds.org}%
       \hfill
       \href{\@vtex@url}{\includevtexlogo}%
       }%
@@ -343,8 +355,24 @@
     \gdef\first@keyword@env{1}%
   }
 
+\ifdefined\directlua
+  \def\fix@italic@cor{%
+    %% remove italic correction at the end of inline math before keyword sep ';'
+    \directlua{
+    local prevnode = tex.nest[tex.nest.ptr].tail 
+    if prevnode and prevnode.id == node.id("math") then
+      local pprevnode = prevnode.prev 
+      if pprevnode and pprevnode.id == node.id("kern") then
+        node.remove(tex.nest[tex.nest.ptr].head, pprevnode)
+      end
+    end
+  }}
+\else
+  \let\fix@italic@cor\empty
+\fi
+  
 \newif\if@firstkwd
-\def\kwd@sep{\unskip; }
+\def\kwd@sep{\unskip\fix@italic@cor; }
 \def\kwd@lastsep{\unskip}
 \def\kwd@font{\itshape}
 \def\msc@hrefprefix{https://www.ams.org/msc/msc2010.html?s=}
@@ -622,7 +650,7 @@
   \fancyhf{}%
   \fancyhead[L]{\normalfont\footnotesize\print@volume@line}
   \fancyhead[R]{\footnotesize DOI: \@doi\\ \@pretitle}
-  \fancyfoot[LE,RO]{\@pageprefix\thepage}% number of the first page
+  \fancyfoot[LE,RO]{}% number of the first page
   \fancyfoot[RE,LO]{\footnotesize \history@fmt}
 }
   
@@ -1032,7 +1060,7 @@
   \ifnum\note@cnt>\@ne
     \add@xtok\t@loc@notes{\note@sep}%
   \fi
-  \add@tok\t@loc@notes{#1}%
+  \add@tok\t@loc@notes{\ref{aff.#1}}%
   }
 \def\note@sep{,}
 %% <<< author setup <<<
