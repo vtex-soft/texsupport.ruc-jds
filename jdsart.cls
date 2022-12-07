@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2022/04/20 v0.20 Journal of Data Science class]
+\ProvidesClass{jdsart}[2022/12/07 v0.21 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -589,7 +589,7 @@
   \fi
   }%
 
-\def\runtitle#1{\gdef\@runtitle{#1}}                      
+\def\runtitle#1{\gdef\@runtitle{\hbox{#1}}}
 \def\@runtitle{}
 \def\runauthor#1{\gdef\@runauthor{#1}} 
 \def\@runauthor{\output@head@authors}
@@ -632,18 +632,32 @@
     \fi
   \egroup
   }
-  
+
 %% define header and footer
 \RequirePackage{fancyhdr}
 \setlength{\headheight}{24pt}
 \pagestyle{fancy}
 \fancyhead{} % clear all header fields
-\fancyhead[CO]{\textit \@runtitle}
+\fancyhead[CO]{%
+  \csname check@head@line\endcsname%
+  \textit \@runtitle%
+}
 \fancyhead[CE]{\@runauthor}
 \fancyhead[LE,RO]{\@pageprefix\thepage}
 \fancyfoot{} % clear all footer fields
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+\def\check@head@line{%
+  \def\pseudo@head@line{\@pageprefix 000\space{\textit\@runtitle}\space\@pageprefix 000}%
+  \bgroup
+    \settowidth\@tempdima{\pseudo@head@line}%
+    \ifdim\@tempdima>\textwidth\relax
+      \ClassError{jdsart}{Running title is too long!}{}%
+      \global\let\check@head@line\relax
+    \fi
+  \egroup
+}
 
 \fancypagestyle{copyright}{%
   \renewcommand{\headrulewidth}{0pt}%
@@ -1453,7 +1467,7 @@
 
 \def\title#1{%
   \beg@elem
-  \gdef\@runtitle{#1}%
+  \gdef\@runtitle{\hbox{#1}}%
   \init@fm@element{title}{#1}%
   \protected\csxdef{title@t@loc@notes}{\the\t@loc@notes}%
   \csname title@end@hook\endcsname
