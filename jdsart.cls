@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2022/12/07 v0.21 Journal of Data Science class]
+\ProvidesClass{jdsart}[2022/12/18 v0.22 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -1249,6 +1249,8 @@
 \def\subtitle@note@counter{titlenote}
 \def\relatedarticle@note@counter{titlenote}
 \def\correctionnote@note@counter{titlenote}
+\def\correctedarticle@note@counter{titlenote}
+\def\commentaryarticle@note@counter{titlenote}
 
 \newcounter{authornote}
 \def\author@note@counter{authornote}
