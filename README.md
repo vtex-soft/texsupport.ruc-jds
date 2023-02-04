@@ -1,7 +1,6 @@
 # texsupport.ruc-jds
 
-LaTeX author support files for the journal  
-[Data Science](http://www.jds-online.com/)
+LaTeX author support files for the [Journal of Data Science](https://jds-online.org/)
 
 
 ## Contents
@@ -19,7 +18,7 @@ The following files are given in the repository (or directly in `.zip` archive):
 ## Setup
 
 -   Clone the repository or download the `.zip` archive.
--   Install LaTeX style files (`jdsart.cls`, `jds.bst`) 
+-   Install LaTeX style files (`jdsart.cls`, `jds.bst`)
     in your TeX system or place them in the same directory where your `*.tex` file is.
 -   Read the instructions (`jdsmanual.pdf`) for the preparation of your LaTeX document.
 -   Use the template file `jds_template.tex` to prepare your manuscript.
@@ -27,7 +26,5 @@ The following files are given in the repository (or directly in `.zip` archive):
 ## Bug reports
 
 Please submit bug reports and/or feature requests
-at [GitHub page](https://github.com/vtex-soft/texsupport.ruc-jds/issues) or 
+at [GitHub page](https://github.com/vtex-soft/texsupport.ruc-jds/issues) or
 [latex-support@vtex.lt](mailto:latex-support@vtex.lt).
-
-
