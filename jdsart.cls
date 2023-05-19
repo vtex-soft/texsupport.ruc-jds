@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2022/12/18 v0.22 Journal of Data Science class]
+\ProvidesClass{jdsart}[2023/05/19 v0.23 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -34,6 +34,7 @@
 \DeclareOption{discussion}{\@discussiontrue}
 \DeclareOption{chinese}{\@chinesetrue \@discussiontrue}
 \DeclareOption{linenumber}{\@linenumbertrue}
+\DeclareOption{nolinenumber}{\@linenumberfalse}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions*
@@ -702,26 +703,49 @@
 \fi
 
 \if@linenumber
-  \RequirePackage[pagewise,mathlines]{lineno}
-  \linenumbers*[1]
-  %% patches to make lineno work better with amsmath
-  \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
-    \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-    \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
-    \renewenvironment{#1}%
-    {\linenomath\csname old#1\endcsname}%
-    {\csname oldend#1\endcsname\endlinenomath}}%
-  \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
-    \patchAmsMathEnvironmentForLineno{#1}%
-    \patchAmsMathEnvironmentForLineno{#1*}}%
-  \AtBeginDocument{%
-    \patchBothAmsMathEnvironmentsForLineno{equation}%
-    \patchBothAmsMathEnvironmentsForLineno{align}%
-    \patchBothAmsMathEnvironmentsForLineno{flalign}%
-    \patchBothAmsMathEnvironmentsForLineno{alignat}%
-    \patchBothAmsMathEnvironmentsForLineno{gather}%
-    \patchBothAmsMathEnvironmentsForLineno{multline}%
-  }
+  \long\gdef\numberlines@size{\scriptsize\ttfamily}
+  \long\gdef\numberlines@skip{24\p@}
+  %
+  \def\numberlines@hook{%
+    \appto\@evenhead\put@numberlines@box
+    \appto\@oddhead\put@numberlines@box
+    }
+  %
+  \gappto\ps@copyright\numberlines@hook
+  \numberlines@hook
+  %
+  \newbox\numberlines@box
+  \newskip\numberlines@box@skip
+  %
+  \def\set@numberlines@box{%
+    \setlength\numberlines@box@skip\headsep
+    \addtolength\numberlines@box@skip{5\p@}%
+    %
+    \setbox\numberlines@box\vtop to\textheight{%
+      \parindent=\z@
+      \vskip\z@
+      \@tempcnta=0%
+      \@tempdima=\z@
+      \loop
+        \advance\@tempcnta by 1%
+        \advance\@tempdima by \baselineskip
+        \hbox to\textwidth{%
+          \llap{\numberlines@size\the\@tempcnta\kern\numberlines@skip}%
+          \hfill
+          \rlap{\numberlines@size\kern\numberlines@skip\the\@tempcnta}%
+          }%
+      \ifdim\@tempdima<\textheight\repeat
+      \vss
+      }%
+    %
+    \ht\numberlines@box=\z@
+    \dp\numberlines@box=\z@
+    }
+  %
+  \def\put@numberlines@box{\lower\numberlines@box@skip\hbox to\z@{\hss\copy\numberlines@box}}
+  %
+  \AtBeginDocument{\set@numberlines@box}
+  %
 \fi
 
 %% caption
