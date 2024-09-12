@@ -36,6 +36,11 @@
 \DeclareOption{linenumber}{\@linenumbertrue}
 \DeclareOption{nolinenumber}{\@linenumberfalse}
 
+\newif\if@rotating@loaded \@rotating@loadedfalse
+\DeclareOption{rotating}{%
+  \@rotating@loadedtrue
+  \AtEndOfClass{\RequirePackage{rotating}}}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions*
 
@@ -245,7 +250,6 @@
 
 \RequirePackage{amsthm}
 
-\RequirePackage{rotating}
 \RequirePackage{graphicx}
 \RequirePackage{array}
 
@@ -1057,15 +1061,18 @@
   \else
     \author@fmt@init
   \fi
-  \get@author@num #3\relax
-  \set@author@sep
-  \@author@sep
-  \@nameuse{#3}%
-  \edef\@tempb{#2}%
-  \ifx\@tempb\@empty
-  \else
-    \fm@textsuperscript{#2}%
-  \fi
+  \bgroup
+    \author@font
+    \get@author@num #3\relax
+    \set@author@sep
+    \@author@sep
+    \@nameuse{#3}%
+    \edef\@tempb{#2}%
+    \ifx\@tempb\@empty
+    \else
+      \fm@textsuperscript{#2}%
+    \fi
+  \egroup
   }
 \def\fm@textsuperscript#1{%
   %$^{\mathrm{\scriptsize #1}}$%
@@ -1075,7 +1082,6 @@
 \def\author@fmt@init{%
   \gdef\author@fmt@init@done{1}%
   \vskip\author@preskip
-  \author@font
   \leavevmode
   }
 
