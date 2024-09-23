@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2023/05/19 v0.23 Journal of Data Science class]
+\ProvidesClass{jdsart}[2023/09/23 v0.24 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -1813,6 +1813,26 @@
 \def\funding{\Env@EndOfContrib\fundingname}
 \let\endfunding\endEnv@EndOfContrib
 %% <<< Funding <<<
+
+%% >>> esm environment for xml >>>
+\def\esm@titlesep{}
+\def\esm{%
+  \@ifnextchar[%
+    \@esm
+    {\@esm[]}%
+  }
+\def\@esm[#1]{%
+  \bgroup
+  \par
+  \def\esmtitle##1{%
+    \section*{##1}%
+    \esm@titlesep}%
+  \def\esmdescription{\@firstofone}%
+  \def\esmfiletype{\@gobble}%
+  \def\esmfilename{\@gobble}%
+  }
+\def\endesm{\egroup}
+%% <<< esm environment for xml <<<
 
 \newenvironment{backmatter}{\goodbreak\ignorespaces}{}
 
