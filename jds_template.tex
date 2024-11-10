@@ -1,13 +1,25 @@
-\documentclass[linenumber]{jdsart}
+% The `linenumber` option is necessary for ease of reviewer referencing
+\documentclass[linenumber]{jdsart} 
 
 \volume{0}
 \issue{0}
 \pubyear{2022}
-\articletype{research-article}
 \doi{0000}
+
+%% Article types correspond to different sections of the JDS
+%% Choose one that's most suitable for your submission
+% \articletype{Statistical Data Science}
+% \articletype{Data Science in Action}
+% \articletype{Compiuting in Data Science}
+% \articletype{Data Sccience Review}
+% \articletype{Philosophy of Data Science}
+% \articletype{Data Science Education}
+\articletype{Data Science Conversation}
+
 
 
 %startlocaldefs
+%% Put your local definitions here 
 
 % local macros
 %\newtheorem{thm}{Theorem}
@@ -27,7 +39,7 @@
 
 \begin{frontmatter}
 
-\title{}
+\title{This is an Interesting Title}
 %\title{\thanksref{t1}}
 %\thankstext[id=t1]{}
 
@@ -41,11 +53,11 @@
 
 %\dedicated{}
 
-\begin{abstract}
+\begin{abstract} % avoid notations; avoid citations; no exceeding 250 words
 Abstract
 \end{abstract}
 
-\begin{keywords}
+\begin{keywords} % Alphabetical; not to repeat anything in the title
 \kwd{}
 \kwd{}
 \kwd{}
@@ -54,41 +66,55 @@ Abstract
 \end{frontmatter}
 
 
-\section{}\label{}
+\section{Introduction}\label{sec:intro}
+
+The introduction needs to answer three questions:
+1) Why should we care about this research (its importance)?
+2) What have been done in the literature (identify a gap)?
+3) What are new (your contributions)?
 
 
-%% Table %%
-%%%%%%%%%%%%%%%%%%%%%%
-%\begin{table}
-%\caption{}\label{}
-%\end{table}
-
-%% Figure %%
-%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[t]
-%\includegraphics{}
-%\caption{}\label{}
-%\end{figure}
-
-
-%% Theorem %%
-%%%%%%%%%%%%%%%%%%%%%%
-%%\begin{thm}[]\label{} Theorem
-%%\end{thm}
+When citing literatures, be sure to understand the difference of
+textual citations and parenthetical citations.
+% Example of textual citation
+In their influential work, \citet{carlin1992monte} introduced a new
+approach to Bayesian modeling, which has been widely adopted in
+statistical analysis.
+% Example of parenthetical citation
+Recent studies have shown the effectiveness of this method in various
+applications \citep{gamado2014modelling,  gamado2017estimation}.
+% Mixed usage example
+According to \citet{carlin1992monte}, machine learning techniques
+can be improved by incorporating domain-specific knowledge
+\citep[see also][]{kotz2001laplace}.
 
 
-%% Proof %%
-%%%%%%%%%%%%%%%%%%%%%%
-%\begin{proof}
-%\end{proof}
+A quick checklist on styles:
+\begin{enumerate}
+\item Each equation in display is part of a sentence, which needs to
+  be punctuated as appropriate.
+\item Put negative signs in math mode; otherwise it is just a dash.
+\item Use the right citation command to distinguish textual and
+  parenthetical citations.
+\item Generate statistical graphics as vector graphics instead of
+  raster graphics; the latter blurs when zoomed in.  
+\item Put journal/book titles in title style in bibtex.
+\item Protect upper cases in special words such as \{MCMC\},
+  \{B\}ayesian, \{G\}aussian, etc.
+\item Look up and cite the latest journal versions of preprints.
+\end{enumerate}
 
-%% Supplementary Material %%
-%%%%%%%%%%%%%%%%%%%%%%
-%\begin{esm}
-%\esmtitle{Supplementary Material}
-%\esmdescription{}
-%\esmfilename{}
-%\end{esm}
+
+\section{}\label{} % refer to section numbers by their labels in the paper
+
+%% Supplementary Material is required for reproducibility check
+%% List its contents and links to public repositories
+\section*{Supplementary Material}
+%% An example
+Some additional simulation results and a compressed folder with the
+code to simulate the settings with 5 moderators (5M), implement our
+proposed methods, and some existing methods are provided as the online
+Supplementary Material.
 
 %% Appendices %%
 %%%%%%%%%%%%%%%%%%%%%%
@@ -96,15 +122,14 @@ Abstract
 %\section{Appendix section}
 %\end{appendix}
 
-%% Acknowledgements %%
-%%%%%%%%%%%%%%%%%%%%%%
-%\begin{acknowledgement}%[title={Acknowledgments}]
-%\end{acknowledgement}
+%% Acknowledgements, if needed
+\section*{Acknowledgements}
+This work was partially supported by the National Science Foundation
+Division of Mathematical Sciences (Award number here).
 
-%% Funding %%
-%%%%%%%%%%%%%%%%%%%%%%
-%\begin{funding}
-%\end{funding}
 
+
+\bibliographystyle{jds}  % using the JDS bib style
+\bibliography{biblio}  % biblio.bib should store all your bibtex entries
 
 \end{document} 
