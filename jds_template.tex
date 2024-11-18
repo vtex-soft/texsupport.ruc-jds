@@ -1,13 +1,14 @@
+% The `linenumber` option is necessary for ease of reviewer referencing
 \documentclass[linenumber]{jdsart}
 
 \volume{0}
 \issue{0}
-\pubyear{2022}
+\pubyear{2025}
 \articletype{research-article}
 \doi{0000}
 
-
 %startlocaldefs
+%% Put your local definitions here
 
 % local macros
 %\newtheorem{thm}{Theorem}
@@ -27,7 +28,7 @@
 
 \begin{frontmatter}
 
-\title{}
+\title{This is an Interesting Title}
 %\title{\thanksref{t1}}
 %\thankstext[id=t1]{}
 
@@ -36,16 +37,16 @@
 %\thankstext[id=]{}
 \address[]{\institution{}, ..., \cny{}}
 
-%\runtitle{}  %use if necessary to change auto-generated           
-%\runauthor{} %use if necessary to change auto-generated            
+%\runtitle{}  %use if necessary to change auto-generated
+%\runauthor{} %use if necessary to change auto-generated
 
 %\dedicated{}
 
-\begin{abstract}
+\begin{abstract} % avoid notations; avoid citations; no exceeding 250 words
 Abstract
 \end{abstract}
 
-\begin{keywords}
+\begin{keywords} % Alphabetical; not to repeat anything in the title
 \kwd{}
 \kwd{}
 \kwd{}
@@ -53,9 +54,8 @@ Abstract
 
 \end{frontmatter}
 
-
-\section{}\label{}
-
+% refer to section numbers by their labels in the paper
+%\section{}\label{}
 
 %% Table %%
 %%%%%%%%%%%%%%%%%%%%%%
@@ -70,19 +70,20 @@ Abstract
 %\caption{}\label{}
 %\end{figure}
 
-
 %% Theorem %%
 %%%%%%%%%%%%%%%%%%%%%%
 %%\begin{thm}[]\label{} Theorem
 %%\end{thm}
-
 
 %% Proof %%
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{proof}
 %\end{proof}
 
-%% Supplementary Material %%
+
+%% Supplementary Material is required for reproducibility check
+%% List its contents and links to public repositories
+%% Provide description of Supplementary Material in \esmdescription{}
 %%%%%%%%%%%%%%%%%%%%%%
 %\begin{esm}
 %\esmtitle{Supplementary Material}
@@ -106,5 +107,7 @@ Abstract
 %\begin{funding}
 %\end{funding}
 
+%\bibliographystyle{jds}  % using the JDS bib style
+%\bibliography{biblio}  % biblio.bib should store all your bibtex entries
 
 \end{document} 
