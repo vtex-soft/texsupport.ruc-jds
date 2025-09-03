@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2023/09/23 v0.24 Journal of Data Science class]
+\ProvidesClass{jdsart}[2025/09/03 v0.25 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -197,7 +197,11 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 
-\let\kernel@bordmatrix@left(                                       
+\ifdefined\noaccents@
+    \noaccents@
+\fi
+
+\let\kernel@bordmatrix@left(
 \let\kernel@bordmatrix@right)
 \def\kernel@bordermatrix#1{%
     \begingroup 
@@ -206,9 +210,9 @@
         \setbox\z@\vbox{%
             \def\cr{\crcr\noalign{\kern2\p@\global\let\cr\endline}}%
             \ialign{$##$\hfil\kern2\p@\kern\@tempdima&\thinspace\hfil$##$\hfil
-  	        &&\quad\hfil$##$\hfil\crcr
+                &&\quad\hfil$##$\hfil\crcr
                 \omit\strut\hfil\crcr\noalign{\kern-\baselineskip}%
-	        #1\crcr\omit\strut\cr
+                #1\crcr\omit\strut\cr
                 }%
             }%
         \setbox\tw@\vbox{\unvcopy\z@\global\setbox\@ne\lastbox}%
