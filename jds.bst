@@ -408,12 +408,13 @@ FUNCTION {format.names}
       't :=
       nameptr #1 >
         {
-          nameptr #6
-          #1 + =
-          numnames #6
-          > and
-            { "others" 't :=
-              #1 'namesleft := }
+          nameptr #5 #1 + =
+          numnames #6 > 
+          and
+            { "..." 't :=
+              #2 'namesleft := 
+              numnames  #1 - 'nameptr :=
+            }
             'skip$
           if$
           namesleft #1 >
@@ -423,13 +424,7 @@ FUNCTION {format.names}
                 { 't := }
                 { pop$ }
               if$
-              "," *
-              t "others" =
-                {
-                  " " * bbl.etal *
-                }
-                { " " * t * }
-              if$
+              ", " * t *
             }
           if$
         }
