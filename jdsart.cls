@@ -1901,47 +1901,51 @@
 %%%%%%%%%%%%%%%% BIBLIOGRAPHY
 
 \def\bellipsis{\textellipsis}
-\DeclareRobustCommand\surl[1]{\url{#1}}
-\DeclareRobustCommand\doiurl[1]{\url{#1}}
-\DeclareRobustCommand\arxivurl[1]{\url{#1}}
 
-\def\set@bibl@cmd#1{\expandafter\def\csname #1\endcsname##1{{\csname #1@style\endcsname ##1}}}
+\ifdefined\bvolume
+\else
+  \DeclareRobustCommand\surl[1]{\url{#1}}
+  \DeclareRobustCommand\doiurl[1]{\url{#1}}
+  \DeclareRobustCommand\arxivurl[1]{\url{#1}}
 
-\def\set@bibl@env#1{%
-  \newenvironment{#1}
-    {%
-      \csname start@bibenv@hook\endcsname
-      \csname start@#1@hook\endcsname
-    }{%
-      \unskip
-      \csname stop@#1@hook\endcsname
-      \csname stop@bibenv@hook\endcsname
-      \nolinebreak
-    }%
-  }
+  \def\set@bibl@cmd#1{\expandafter\def\csname #1\endcsname##1{{\csname #1@style\endcsname ##1}}}
 
-\def\bibl@cmds@I{bvolume,binits,bsnm,bparticle,bsuffix,bdegs,%
-  bsertitle,batitle,bjtitle,bctitle,bbtitle,bauthor,%
-  binstitute,binstitutionaled,bissue,bnumber,bmonth,bedition,bpublisher,blocation,%
-  bisbn,bissn,bfpage,blpage,byear,bcomment,bsupplement,%
-  beditor,bseriesno,bconfname,bconflocation,bconfdate,%
-  oauthor,oinstitute}
-\def\do#1{\set@bibl@cmd{#1}}
-\expandafter\docsvlist\expandafter{\bibl@cmds@I}
+  \def\set@bibl@env#1{%
+    \newenvironment{#1}
+      {%
+        \csname start@bibenv@hook\endcsname
+        \csname start@#1@hook\endcsname
+      }{%
+        \unskip
+        \csname stop@#1@hook\endcsname
+        \csname stop@bibenv@hook\endcsname
+        \nolinebreak
+      }%
+    }
 
-\def\bibl@envs{barticle,bchapter,botherref,bbook,breport,bthesis,bpatent}
-\def\do#1{\set@bibl@env{#1}}
-\expandafter\docsvlist\expandafter{\bibl@envs}
+  \def\bibl@cmds@I{bvolume,binits,bsnm,bparticle,bsuffix,bdegs,%
+    bsertitle,batitle,bjtitle,bctitle,bbtitle,bauthor,%
+    binstitute,binstitutionaled,bissue,bnumber,bmonth,bedition,bpublisher,blocation,%
+    bisbn,bissn,bfpage,blpage,byear,bcomment,bsupplement,%
+    beditor,bseriesno,bconfname,bconflocation,bconfdate,%
+    oauthor,oinstitute}
+  \def\do#1{\set@bibl@cmd{#1}}
+  \expandafter\docsvlist\expandafter{\bibl@cmds@I}
 
-\@ifundefined{adsurl}{\let\adsurl\surl}{}
-\@ifundefined{url}{\let\url\surl}{}
+  \def\bibl@envs{barticle,bchapter,botherref,bbook,breport,bthesis,bpatent}
+  \def\do#1{\set@bibl@env{#1}}
+  \expandafter\docsvlist\expandafter{\bibl@envs}
 
-\let\endbibitem\relax
-\let\betal@style\relax
-\def\@betal{et al.}
-\def\betal{{\betal@style \@betal}}
-\long\def\OrigBibText#1\endOrigBibText{}
-\def\bptok#1{\ignorespaces}
+  \@ifundefined{adsurl}{\let\adsurl\surl}{}
+  \@ifundefined{url}{\let\url\surl}{}
+
+  \let\endbibitem\relax
+  \let\betal@style\relax
+  \def\@betal{et al.}
+  \def\betal{{\betal@style \@betal}}
+  \long\def\OrigBibText#1\endOrigBibText{}
+  \def\bptok#1{\ignorespaces}
+\fi
 
 \endinput
 %%
