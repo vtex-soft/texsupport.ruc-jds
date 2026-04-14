@@ -12,13 +12,13 @@ The following files are given in the repository (or directly in `.zip` archive):
 - `jds_sample.pdf` - a sample article
 - `jds_template.tex` - a template file
 - `jdsart.cls` - journal class file
-- `jds.bst` - Bibtex style
+- `jds2.bst` - Bibtex style
 - `biblio.bib` - Bibtex DB sample
 
 ## Setup
 
 -   Clone the repository or download the `.zip` archive.
--   Install LaTeX style files (`jdsart.cls`, `jds.bst`)
+-   Install LaTeX style files (`jdsart.cls`, `jds2.bst`)
     in your TeX system or place them in the same directory where your `*.tex` file is.
 -   Read the instructions (`jdsmanual.pdf`) for the preparation of your LaTeX document.
 -   Use the template file `jds_template.tex` to prepare your manuscript.
