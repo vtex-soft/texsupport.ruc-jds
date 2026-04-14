@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2025/09/03 v0.25 Journal of Data Science class]
+\ProvidesClass{jdsart}[2026/04/14 v0.29 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -62,7 +62,7 @@
     \if@chinese
     \else
       \RequirePackage{bibunits}
-      \defaultbibliographystyle{jds}
+      \defaultbibliographystyle{jds2}
     \fi
 \fi
 
@@ -1897,6 +1897,51 @@
 \RequirePackage{marginnote}
 % \reversemarginpar
 \setlength{\marginparwidth}{2.4cm}
+
+%%%%%%%%%%%%%%%% BIBLIOGRAPHY
+
+\def\bellipsis{\textellipsis}
+\DeclareRobustCommand\surl[1]{\url{#1}}
+\DeclareRobustCommand\doiurl[1]{\url{#1}}
+\DeclareRobustCommand\arxivurl[1]{\url{#1}}
+
+\def\set@bibl@cmd#1{\expandafter\def\csname #1\endcsname##1{{\csname #1@style\endcsname ##1}}}
+
+\def\set@bibl@env#1{%
+  \newenvironment{#1}
+    {%
+      \csname start@bibenv@hook\endcsname
+      \csname start@#1@hook\endcsname
+    }{%
+      \unskip
+      \csname stop@#1@hook\endcsname
+      \csname stop@bibenv@hook\endcsname
+      \nolinebreak
+    }%
+  }
+
+\def\bibl@cmds@I{bvolume,binits,bsnm,bparticle,bsuffix,bdegs,%
+  bsertitle,batitle,bjtitle,bctitle,bbtitle,bauthor,%
+  binstitute,binstitutionaled,bissue,bnumber,bmonth,bedition,bpublisher,blocation,%
+  bisbn,bissn,bfpage,blpage,byear,bcomment,bsupplement,%
+  beditor,bseriesno,bconfname,bconflocation,bconfdate,%
+  oauthor,oinstitute}
+\def\do#1{\set@bibl@cmd{#1}}
+\expandafter\docsvlist\expandafter{\bibl@cmds@I}
+
+\def\bibl@envs{barticle,bchapter,botherref,bbook,breport,bthesis,bpatent}
+\def\do#1{\set@bibl@env{#1}}
+\expandafter\docsvlist\expandafter{\bibl@envs}
+
+\@ifundefined{adsurl}{\let\adsurl\surl}{}
+\@ifundefined{url}{\let\url\surl}{}
+
+\let\endbibitem\relax
+\let\betal@style\relax
+\def\@betal{et al.}
+\def\betal{{\betal@style \@betal}}
+\long\def\OrigBibText#1\endOrigBibText{}
+\def\bptok#1{\ignorespaces}
 
 \endinput
 %%
