@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2026/04/14 v0.29 Journal of Data Science class]
+\ProvidesClass{jdsart}[2026/05/15 v0.32 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -104,6 +104,10 @@
   \RequirePackage{lastpage}
   \def\@@lastpage{\pageref*{LastPage}}
   }
+
+\ifcsundef{jobstart@date@info}%
+  {\xdef\jobstart@date@info{\the\year\two@digits{\the\month}\two@digits{\the\day}}}%
+  {}
 
 \def\@journal{Journal of Data Science}
 \def\@journalabbrev{Journal of Data Science}
@@ -324,24 +328,25 @@
     \ifx\@tempa\@empty
       \def\keywords@prefix{\textbf{Keywords}\enskip\space}%
     \else
-      \ifx\@tempa\PACS@name
-        \def\keywords@prefix{\it PACS:\space}%
-      \else
-        \ifx\@tempa\JEL@name
-          \def\keywords@prefix{\textbf{JEL~classification}\enskip\space}%
-        \else
-          \ifx\@tempa\MSC@MMX@name
-            \def\keywords@prefix{\textbf{2010~MSC}\enskip\space}%
-            \def\MSC@active@keywords{1}%
-          \else
-            \def\keywords@prefix{\textbf{#1~MSC}\enskip\space}%
-            \def\msc@tempa{2010}%
-            \ifx\@tempa\msc@tempa
-              \def\MSC@active@keywords{1}%
-            \fi
-          \fi
-        \fi
-      \fi
+      \ClassError{jdsart}{The option 'class' is not allowed in the 'keyword' environment!}{}%
+%      \ifx\@tempa\PACS@name
+%        \def\keywords@prefix{\it PACS:\space}%
+%      \else
+%        \ifx\@tempa\JEL@name
+%          \def\keywords@prefix{\textbf{JEL~classification}\enskip\space}%
+%        \else
+%          \ifx\@tempa\MSC@MMX@name
+%            \def\keywords@prefix{\textbf{2010~MSC}\enskip\space}%
+%            \def\MSC@active@keywords{1}%
+%          \else
+%            \def\keywords@prefix{\textbf{#1~MSC}\enskip\space}%
+%            \def\msc@tempa{2010}%
+%            \ifx\@tempa\msc@tempa
+%              \def\MSC@active@keywords{1}%
+%            \fi
+%          \fi
+%        \fi
+%      \fi
     \fi
     \@firstkwdtrue
     \global\advance\keyboxcnt\@ne
@@ -363,6 +368,12 @@
     \egroup
     \gdef\first@keyword@env{1}%
   }
+\ifnum\jobstart@date@info>20260428\relax
+  \let\keyword\keywords
+  \let\endkeyword\endkeywords
+  \let\keywords\@undefined
+  \let\endkeywords\@undefined
+\fi
 
 \ifdefined\directlua
   \def\fix@italic@cor{%
@@ -466,8 +477,8 @@
       \let\snm\@gobble
       \let\suffix\@gobble
       \let\roles\@gobble
-      \def\thanks##1##{\@gobble}%
-      \def\thanksref##1##{\@gobble}%
+      \def\thanks####1####{\@gobble}%
+      \def\thanksref####1####{\@gobble}%
       \let\thankstext\@gobble
       \def\ead####1####{\global\stepcounter{countead}}%
       \csname ##1\endcsname}%
@@ -496,8 +507,9 @@
   \let\printaug\relax
 \else
   \def\editorial@articletype@control{%
-    \let\output@frontmatter@authors\validate@frontmatter@authors
+%    \let\output@frontmatter@authors\validate@frontmatter@authors
     \let\output@publishedonline\relax
+    \gdef\author@list{}%
     }
   \def\other@articletype@control{%
     \let\output@publishedonline\relax
