@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2026/09/28 v0.33 Journal of Data Science class]
+\ProvidesClass{jdsart}[2026/09/28 v0.34 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -815,7 +815,7 @@
   
 \setlength{\bibsep}{0em}
 
-\def\MR@url{https://www.ams.org/mathscinet-getitem?mr=}
+\def\MR@url{https://mathscinet.ams.org/mathscinet-getitem?mr=}
 \def\MR#1{\href{\MR@url#1}{MR#1}}
 
 \RequirePackage{xcolor}
@@ -875,7 +875,7 @@
 \def\set@proof@mr{%
   \define@key{bid}{mr}{%
     \@nameuse{startchkuriskip}%
-    \safe@href{https://www.ams.org/mathscinet-getitem?mr=##1}{MR##1}%
+    \safe@href{https://mathscinet.ams.org/mathscinet-getitem?mr=##1}{MR##1}%
     \@nameuse{endchkuriskip}%
     \ignorespaces
     }%
