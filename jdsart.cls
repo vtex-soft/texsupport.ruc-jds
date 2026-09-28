@@ -16,7 +16,7 @@
 %% Either version 1.3 or (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{jdsart}[2026/05/15 v0.32 Journal of Data Science class]
+\ProvidesClass{jdsart}[2026/09/28 v0.33 Journal of Data Science class]
 
 \def\fmt@name{jdsart}
 
@@ -1831,6 +1831,10 @@
 %% <<< Funding <<<
 
 %% >>> esm environment for xml >>>
+\def\fmt@esmtitle{%
+  \edef\@tempa{\noexpand\section*{\@esmtitle}}%
+  \@tempa
+  \esm@titlesep}
 \def\esm@titlesep{}
 \def\esm{%
   \@ifnextchar[%
@@ -1840,14 +1844,19 @@
 \def\@esm[#1]{%
   \bgroup
   \par
-  \def\esmtitle##1{%
-    \section*{##1}%
-    \esm@titlesep}%
-  \def\esmdescription{\@firstofone}%
-  \def\esmfiletype{\@gobble}%
-  \def\esmfilename{\@gobble}%
+  \def\esmtitle##1{\def\@esmtitle{##1}}%
+  \long\def\esmdescription##1{\def\@esmdescription{##1}}%
+  \def\esmfiletype##1{\def\@esmfiletype{##1}}%
+  \def\esmfilename##1{\def\@esmfilename{##1}}%
+  \def\esmlink##1{\def\@esmlink{\url{##1}}}%
   }
-\def\endesm{\egroup}
+\def\endesm{%
+  \fmt@esmtitle
+  \ifdefined\@esmdescription
+    \@esmdescription
+  \fi
+  \egroup
+  }
 %% <<< esm environment for xml <<<
 
 \newenvironment{backmatter}{\goodbreak\ignorespaces}{}
